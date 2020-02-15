@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   lintOnSave: false,
-  devServer: {
-    proxy: 'https://namaztimes.kz/',
-  }
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/travelTest/dist'
+    : '/'
 }
