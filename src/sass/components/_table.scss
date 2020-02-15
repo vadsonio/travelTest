@@ -1,0 +1,18 @@
+.table{
+  width: 100%;
+  &__head{
+    background: #eee;
+  }
+  th{
+    padding: 10px;
+    border-bottom: 1px solid #999;
+  }
+  td{
+    padding: 10px;
+    border-bottom: 1px solid #999;
+  }
+  &__empty-posts{
+    padding: 20px 0;
+    text-align: center;
+  }
+}
