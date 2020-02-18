@@ -32,89 +32,75 @@
 
         </div>
       </div>
-      <div class="modal__body">
+      <div class="modal__body" ref="messagesBody">
 
         <div class="user-message">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
             Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
             "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
             Мне
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             вчера в 17.45
           </span>
         </div>
 
         <div class="user-message user-message--received">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             вчера в 18.45
           </span>
         </div>
 
         <div class="user-message">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
             где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             сегодня в 17.45
           </span>
         </div>
 
-        <div class="user-message">
-          <div class="userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="text-area">
-            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
-            Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
-            "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
-            Мне
-          </p>
-          <span class="send-time">
-            вчера в 17.45
-          </span>
-        </div>
-
         <div class="user-message user-message--received">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             вчера в 18.45
           </span>
         </div>
 
         <div class="user-message">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
             где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             сегодня в 17.45
           </span>
         </div>
 
         <div class="user-message user-message--received">
-          <div class="userpick userpick--sm"
+          <div class="user-message__img userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="text-area">
+          <p class="user-message__text-area">
             Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
           </p>
-          <span class="send-time">
+          <span class="user-message__send-time">
             18.45
           </span>
         </div>
@@ -141,6 +127,19 @@
         rating: "rate-4",
         showChat: true
       }
+    },
+    methods:{
+      scrollToBottom(){
+        // скролл спускаем вниз
+        let messagesBody = this.$refs.messagesBody;
+        messagesBody.scrollTop = messagesBody.scrollHeight - messagesBody.clientHeight;
+      }
+    },
+    updated(){
+      this.scrollToBottom();
+    },
+    mounted(){
+      this.scrollToBottom();
     }
   }
 
@@ -209,9 +208,6 @@
         border-right: 3px;
       }
     }
-    .user-info{
-
-    }
     .user-name{
       margin: 0;
       margin-bottom: 6px;
@@ -254,8 +250,18 @@
     }
     &__body{
       padding: 0 30px;
-      height: 100%;
+      height: 100vh;
       overflow: auto;
+      &::-webkit-scrollbar {
+        width: 8px;
+      }
+      &::-webkit-scrollbar-track {
+        /**/
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        background-color: #C2C2C2;
+      }
     }
     .user-message{
       margin: 8px 0;
@@ -266,25 +272,26 @@
       &--received{
         background: rgba(240, 236, 240, .53);
       }
-    }
-    .text-area{
-      margin: 0;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-      max-width: 370px;
-      color: #3E3E3E;
-      a{
-        color: #3399FF;
-        text-decoration: underline;
+      &__text-area{
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        max-width: 370px;
+        color: #3E3E3E;
+        a{
+          color: #3399FF;
+          text-decoration: underline;
+        }
+      }
+      &__send-time{
+        margin-left: auto;
+        margin-right: 5px;
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+        color: #7F7F7F;
       }
     }
-    .send-time{
-      margin-left: auto;
-      margin-right: 5px;
-      font-size: 12px;
-      font-family: Arial, sans-serif;
-      color: #7F7F7F;
-    }
+
     &__bottom{
       padding: 12px 30px 9px;
       display: flex;
