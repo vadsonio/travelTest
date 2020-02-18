@@ -7,12 +7,12 @@
           <img src="../../assets/img/modal-close.png" alt="close-modal">
         </button>
         <div class="modal__head-wrap">
-          <div class="userpick" :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <div class="user-info">
-            <h2 class="user-name">
+          <a href="#" class="modal__avatar" :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
+          <div class="modal__user">
+            <h2 class="modal__user-name">
               Токсикова Ольга
             </h2>
-            <span class="user-address">
+            <span class="modal__user-address">
               Днепропетровск
             </span>
           </div>
@@ -33,86 +33,87 @@
         </div>
       </div>
       <div class="modal__body" ref="messagesBody">
+        <div class="modal__container">
+          <div class="user-message">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                   :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
+              <p class="user-message__text-area">
+                Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
+                Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
+                "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
+                Мне
+              </p>
+              <span class="user-message__send-time">
+                вчера в 17.45
+              </span>
+          </div>
 
-        <div class="user-message">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="user-message__text-area">
-            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
-            Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
-            "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
-            Мне
-          </p>
-          <span class="user-message__send-time">
-            вчера в 17.45
-          </span>
+          <div class="user-message user-message--received">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
+            <p class="user-message__text-area">
+              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
+            </p>
+            <span class="user-message__send-time">
+              вчера в 18.45
+            </span>
+          </div>
+
+          <div class="user-message">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                 :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
+            <p class="user-message__text-area">
+              Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
+              где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
+            </p>
+            <span class="user-message__send-time">
+              сегодня в 17.45
+            </span>
+          </div>
+
+          <div class="user-message user-message--received">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
+            <p class="user-message__text-area">
+              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
+            </p>
+            <span class="user-message__send-time">
+              вчера в 18.45
+            </span>
+          </div>
+
+          <div class="user-message">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                 :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
+            <p class="user-message__text-area">
+              Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
+              где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
+            </p>
+            <span class="user-message__send-time">
+              сегодня в 17.45
+            </span>
+          </div>
+
+          <div class="user-message user-message--received">
+            <a href="#" class="modal__avatar modal__avatar--sm"
+                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
+            <p class="user-message__text-area">
+              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
+            </p>
+            <span class="user-message__send-time">
+              18.45
+            </span>
+          </div>
+
         </div>
-
-        <div class="user-message user-message--received">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="user-message__text-area">
-            Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-          </p>
-          <span class="user-message__send-time">
-            вчера в 18.45
-          </span>
-        </div>
-
-        <div class="user-message">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="user-message__text-area">
-            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
-            где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
-          </p>
-          <span class="user-message__send-time">
-            сегодня в 17.45
-          </span>
-        </div>
-
-        <div class="user-message user-message--received">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="user-message__text-area">
-            Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-          </p>
-          <span class="user-message__send-time">
-            вчера в 18.45
-          </span>
-        </div>
-
-        <div class="user-message">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
-          <p class="user-message__text-area">
-            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
-            где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
-          </p>
-          <span class="user-message__send-time">
-            сегодня в 17.45
-          </span>
-        </div>
-
-        <div class="user-message user-message--received">
-          <div class="user-message__img userpick userpick--sm"
-               :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
-          <p class="user-message__text-area">
-            Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-          </p>
-          <span class="user-message__send-time">
-            18.45
-          </span>
-        </div>
-
       </div>
       <div class="modal__bottom">
-        <div class="userpick"
+        <div class="modal__avatar"
              :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}">
         </div>
-        <div class="send-controls">
-          <textarea name="" id="" cols="30" rows="4"></textarea>
-          <button>Отправить</button>
+        <div class="modal__controls">
+          <textarea class="modal__textarea" name="" id="" cols="30" rows="4"></textarea>
+          <button class="modal__btn-send">Отправить</button>
         </div>
       </div>
     </div>
@@ -164,12 +165,15 @@
       flex-direction: column;
       width: 600px;
       max-height: 550px;
+      min-height: 250px;
+      height: 100%;
       border-radius: 6px;
       overflow: hidden;
       background: #fff;
     }
     &__decor-ribbon{
       height: 11px;
+      flex-shrink: 0;
       background-image: url("../../assets/img/modal-ribbon.png");
     }
     &__head{
@@ -194,7 +198,7 @@
         opacity: .8;
       }
     }
-    .userpick{
+    &__avatar{
       margin-right: 15px;
       width: 45px;
       height: 45px;
@@ -208,19 +212,21 @@
         border-right: 3px;
       }
     }
-    .user-name{
-      margin: 0;
-      margin-bottom: 6px;
-      font-size: 24px;
-      line-height: 20px;
-      font-family: 'PT Sans', sans-serif;
-      max-width: 370px;
-    }
-    .user-address{
-      font-size: 16px;
-      font-family: Arial, sans-serif;
-      line-height: 20px;
-      color: #7F7F7F;
+    &__user{
+      &-name{
+        margin: 0;
+        margin-bottom: 6px;
+        font-size: 24px;
+        line-height: 20px;
+        font-family: 'PT Sans', sans-serif;
+        max-width: 370px;
+      }
+      &-address{
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        line-height: 20px;
+        color: #7F7F7F;
+      }
     }
     .star-rate {
       margin-left: auto;
@@ -250,8 +256,9 @@
     }
     &__body{
       padding: 0 30px;
-      height: 100vh;
+      flex-shrink: 1;
       overflow: auto;
+      margin-right: 7px;
       &::-webkit-scrollbar {
         width: 8px;
       }
@@ -297,31 +304,31 @@
       display: flex;
       background: #E9F2FA;
     }
-    .send-controls{
+    &__controls{
       width: 100%;
-      textarea{
-        padding: 5px;
-        margin-bottom: 7px;
-        width: 100%;
-        border-radius: 3px;
-        border: 1px solid rgba(85,85,85,.39);
-        resize: none;
-      }
-      button{
-        padding: 5px 26px;
-        font-size: 16px;
-        line-height: 19px;
-        border-radius: 3px;
-        border: 1px solid rgba(85,85,85,.39);
-        font-family: Arial, sans-serif;
-        cursor: pointer;
-        background: #ffffff; /* Old browsers */
-        background: -moz-linear-gradient(top, #ffffff 0%, #d4d4d8 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, #ffffff 0%,#d4d4d8 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, #ffffff 0%,#d4d4d8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d4d4d8',GradientType=0 ); /* IE6-9 */
-        color: #3E3E3E;
-      }
+    }
+    &__textarea{
+      padding: 5px;
+      margin-bottom: 7px;
+      width: 100%;
+      border-radius: 3px;
+      border: 1px solid rgba(85,85,85,.39);
+      resize: none;
+    }
+    &__btn-send{
+      padding: 5px 26px;
+      font-size: 16px;
+      line-height: 19px;
+      border-radius: 3px;
+      border: 1px solid rgba(85,85,85,.39);
+      font-family: Arial, sans-serif;
+      cursor: pointer;
+      background: #ffffff; /* Old browsers */
+      background: -moz-linear-gradient(top, #ffffff 0%, #d4d4d8 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #ffffff 0%,#d4d4d8 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #ffffff 0%,#d4d4d8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#d4d4d8',GradientType=0 ); /* IE6-9 */
+      color: #3E3E3E;
     }
   }
 </style>
