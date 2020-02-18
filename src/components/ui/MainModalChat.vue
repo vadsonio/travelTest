@@ -33,6 +33,44 @@
         </div>
       </div>
       <div class="modal__body">
+
+        <div class="user-message">
+          <div class="userpick userpick--sm"
+               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
+          <p class="text-area">
+            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
+            Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
+            "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
+            Мне
+          </p>
+          <span class="send-time">
+            вчера в 17.45
+          </span>
+        </div>
+
+        <div class="user-message user-message--received">
+          <div class="userpick userpick--sm"
+               :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></div>
+          <p class="text-area">
+            Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
+          </p>
+          <span class="send-time">
+            вчера в 18.45
+          </span>
+        </div>
+
+        <div class="user-message">
+          <div class="userpick userpick--sm"
+               :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
+          <p class="text-area">
+            Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
+            где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
+          </p>
+          <span class="send-time">
+            сегодня в 17.45
+          </span>
+        </div>
+
         <div class="user-message">
           <div class="userpick userpick--sm"
                :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></div>
@@ -123,7 +161,10 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%,-50%);
+      display: flex;
+      flex-direction: column;
       width: 600px;
+      max-height: 550px;
       border-radius: 6px;
       overflow: hidden;
       background: #fff;
@@ -213,6 +254,8 @@
     }
     &__body{
       padding: 0 30px;
+      height: 100%;
+      overflow: auto;
     }
     .user-message{
       margin: 8px 0;
