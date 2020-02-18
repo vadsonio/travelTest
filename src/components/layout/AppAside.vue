@@ -12,7 +12,7 @@
       Применить фильтры
     </button>
     <div class="sidebar__component-area">
-      <button class="btn btn--pink">
+      <button class="btn btn--pink" @click="openChat">
         Показать чат
       </button>
     </div>
@@ -30,6 +30,8 @@
 
   import { mapMutations, mapGetters } from 'vuex';
 
+  import {EventBus} from "../../eventBus";
+
   export default{
     components:{
       SelectCountries,
@@ -43,6 +45,9 @@
       submitFilters(){
         let filtered = filterLeads(this.getFilters, this.getHotels);
         this.submitList(filtered);
+      },
+      openChat(){
+        EventBus.$emit('openChat');
       }
     },
     computed:{

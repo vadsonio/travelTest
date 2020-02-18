@@ -9,7 +9,9 @@ import store from './store/index.js';
 // directives
 import './directives/directives';
 
+import TextareaAutosize from 'vue-textarea-autosize'
 
+Vue.use(TextareaAutosize)
 
 Vue.config.productionTip = false
 

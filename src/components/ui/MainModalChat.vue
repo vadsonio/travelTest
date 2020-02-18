@@ -1,9 +1,9 @@
 <template>
-  <div class="modal" v-if="showChat">
+  <div class="modal" :class="{'open': showChat}">
     <div class="modal__inner">
       <div class="modal__decor-ribbon"></div>
       <div class="modal__head">
-        <button class="modal__close">
+        <button class="modal__close" @click="showChat = false">
           <img src="../../assets/img/modal-close.png" alt="close-modal">
         </button>
         <div class="modal__head-wrap">
@@ -34,74 +34,17 @@
       </div>
       <div class="modal__body" ref="messagesBody">
         <div class="modal__container">
-          <div class="user-message">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                   :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
-              <p class="user-message__text-area">
-                Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское!
-                Предстоит участие в <a href="">мероприятии</a>, где все гости будут наверняка одеты в наряды
-                "от кутюр", а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать.
-                Мне
-              </p>
-              <span class="user-message__send-time">
-                вчера в 17.45
-              </span>
-          </div>
 
-          <div class="user-message user-message--received">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
+          <div class="user-message"
+               :class="{'user-message--received': sendMessage.user === user, 'activeClass': sendMessage.activeClass}"
+               v-for="sendMessage in messages" :key="sendMessage.id">
+             <a href="#" class="modal__avatar modal__avatar--sm"
+                   :style="{'background-image': `url(${require('../../assets/img/'+sendMessage.avatar+'.png')})`}"></a>
             <p class="user-message__text-area">
-              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
+              {{sendMessage.message}}
             </p>
             <span class="user-message__send-time">
-              вчера в 18.45
-            </span>
-          </div>
-
-          <div class="user-message">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                 :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
-            <p class="user-message__text-area">
-              Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
-              где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
-            </p>
-            <span class="user-message__send-time">
-              сегодня в 17.45
-            </span>
-          </div>
-
-          <div class="user-message user-message--received">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
-            <p class="user-message__text-area">
-              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-            </p>
-            <span class="user-message__send-time">
-              вчера в 18.45
-            </span>
-          </div>
-
-          <div class="user-message">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                 :style="{'background-image': `url(${require('../../assets/img/user-1.png')})`}"></a>
-            <p class="user-message__text-area">
-              Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в <a href="">мероприятии</a>,
-              где все гости будут наверняка одеты в наряды "от кутюр", а у меня со средствами туговато
-            </p>
-            <span class="user-message__send-time">
-              сегодня в 17.45
-            </span>
-          </div>
-
-          <div class="user-message user-message--received">
-            <a href="#" class="modal__avatar modal__avatar--sm"
-                 :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}"></a>
-            <p class="user-message__text-area">
-              Поисковик вам в помощь! Но цена примерно в половину стоимости платья.
-            </p>
-            <span class="user-message__send-time">
-              18.45
+              {{sendMessage.timestamp}}
             </span>
           </div>
 
@@ -112,8 +55,16 @@
              :style="{'background-image': `url(${require('../../assets/img/user-2.png')})`}">
         </div>
         <div class="modal__controls">
-          <textarea class="modal__textarea" name="" id="" cols="30" rows="4"></textarea>
-          <button class="modal__btn-send">Отправить</button>
+          <textarea-autosize
+                  class="modal__textarea"
+                  placeholder=""
+                  ref="myTextarea"
+                  rows="4"
+                  v-model="message"
+                  :min-height="80"
+                  :max-height="120"
+                  @keyup.enter="addMessage"/>
+          <button class="modal__btn-send" @click="addMessage">Отправить</button>
         </div>
       </div>
     </div>
@@ -121,12 +72,63 @@
 </template>
 
 <script>
+  import {EventBus} from '../../eventBus';
 
   export default{
     data(){
       return{
         rating: "rate-4",
-        showChat: true
+        showChat: false,
+        user: '2',
+        message: '',
+        avatar: 'user-2',
+        usersArr: [],
+        messages: [
+          {
+            id: "0",
+            user: "1",
+            avatar: "user-1",
+            message: "Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в мероприятии, где все гости будут наверняка одеты в наряды\n" +
+            "'от кутюр', а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать. Мне",
+            timestamp: "15:00"
+          },
+          {
+            id: "1",
+            user: "2",
+            avatar: "user-2",
+            message: "Поисковик вам в помощь! Но цена примерно в половину стоимости платья.",
+            timestamp: "16:00"
+          },
+          {
+            id: "2",
+            user: "1",
+            avatar: "user-1",
+            message: "Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в мероприятии, где все гости будут наверняка одеты в наряды\n" +
+            "'от кутюр', а у меня со средствами туговато, да и жалко на один раз такие деньжищи отваливать. Мне",
+            timestamp: "17:00"
+          },
+          {
+            id: "3",
+            user: "2",
+            avatar: "user-2",
+            message: "Поисковик вам в помощь! Но цена примерно в половину стоимости платья.",
+            timestamp: "18:00"
+          },
+          {
+            id: "4",
+            user: "1",
+            avatar: "user-1",
+            message: "Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в мероприятии",
+            timestamp: "19:00"
+          },
+          {
+            id: "5",
+            user: "2",
+            avatar: "user-2",
+            message: "Где взять на прокат вечернее красивое платье? А еще лучше дизайнерское! Предстоит участие в мероприятии",
+            timestamp: "20:00"
+          }
+        ]
       }
     },
     methods:{
@@ -134,13 +136,51 @@
         // скролл спускаем вниз
         let messagesBody = this.$refs.messagesBody;
         messagesBody.scrollTop = messagesBody.scrollHeight - messagesBody.clientHeight;
+      },
+      addMessage(){
+        if(this.message===""){
+          return;
+        }
+
+        let messageId = this.messages.length;
+        let message = {
+          id: messageId,
+          user: this.user,
+          avatar: this.avatar,
+          message: this.message,
+          timestamp: '11:00',
+          activeClass: true
+        };
+
+        let messageToActive = messageId;
+        this.usersArr.push(messageToActive);
+
+        this.message="";
+        this.messages.push(message);
       }
     },
     updated(){
       this.scrollToBottom();
     },
-    mounted(){
-      this.scrollToBottom();
+    created(){
+      EventBus.$on('openChat', ()=> this.showChat = true);
+    },
+    watch: {
+      showChat(newVal){
+        newVal ? setTimeout(this.scrollToBottom(), 0) : false;
+      },
+      usersArr(newVal){
+        newVal.forEach((messageId, index)=>{
+          setTimeout(()=>{
+            this.messages.forEach(message=>{
+              if(message.id === messageId){
+                message.activeClass = false;
+              }
+            });
+          }, 2000);
+          newVal.splice(index, 1);
+        });
+      }
     }
   }
 
@@ -149,6 +189,7 @@
 <style lang="scss">
 
   .modal{
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -156,6 +197,9 @@
     height: 100%;
     background: rgba(0,0,0,.5);
     z-index: 2;
+    &.open{
+      display: block;
+    }
     &__inner{
       position: absolute;
       top: 50%;
@@ -276,6 +320,9 @@
       border-radius: 3px;
       display: flex;
       align-items: flex-start;
+      &.activeClass{
+        background: rgba(51, 153, 255, .2);
+      }
       &--received{
         background: rgba(240, 236, 240, .53);
       }
@@ -300,6 +347,7 @@
     }
 
     &__bottom{
+      margin-top: auto;
       padding: 12px 30px 9px;
       display: flex;
       background: #E9F2FA;
