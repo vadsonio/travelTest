@@ -6,19 +6,24 @@
         <Main/>
       </div>
     </div>
+    <ModalChat/>
   </div>
 </template>
 
 <script>
   import Aside from './components/layout/AppAside';
   import Main from './components/layout/AppMain';
+  import ModalChat from './components/ui/MainModalChat';
+
+
 
 
 export default {
   name: 'App',
   components: {
     Aside,
-    Main
+    Main,
+    ModalChat
   }
 }
 </script>

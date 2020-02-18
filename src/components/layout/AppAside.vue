@@ -11,6 +11,11 @@
     <button class="btn btn--blue" @click="submitFilters">
       Применить фильтры
     </button>
+    <div class="sidebar__component-area">
+      <button class="btn btn--pink">
+        Показать чат
+      </button>
+    </div>
   </aside>
 </template>
 
@@ -52,5 +57,8 @@
     width: 300px;
     margin-right: 20px;
     flex-shrink: 0;
+    &__component-area{
+      padding: 10px 0 0;
+    }
   }
 </style>

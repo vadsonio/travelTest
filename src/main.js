@@ -9,6 +9,8 @@ import store from './store/index.js';
 // directives
 import './directives/directives';
 
+
+
 Vue.config.productionTip = false
 
 new Vue({

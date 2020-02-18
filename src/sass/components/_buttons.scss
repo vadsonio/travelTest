@@ -11,4 +11,11 @@
       background: lighten($mainButtons, 5%);
     }
   }
+  &--pink{
+    color: #fff;
+    background-color: $chatColor;
+    &:hover{
+      background: lighten($chatColor, 5%);
+    }
+  }
 }
